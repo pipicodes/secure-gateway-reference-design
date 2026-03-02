@@ -1,10 +1,10 @@
-## Purchase Flow (Nuvei Gateway)
+## Purchase Flow (XX Gateway)
 
 ```mermaid
 sequenceDiagram
 autonumber
 actor Merchant as Online Merchant Shop
-participant GW as Nuvei Gateway API
+participant GW as XX Gateway API
 participant Risk as External Risk/Fraud Service
 participant BC as Bank Connector (Adapter)
 participant Bank as Bank API
