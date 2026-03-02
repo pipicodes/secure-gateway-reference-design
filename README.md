@@ -23,6 +23,7 @@ else Risk APPROVE
   Bank-->>BC: APPROVED/DECLINED
   BC-->>GW: Normalized response
   GW-->>Merchant: Final status
+end
 ```
 ## Cancellation Flow
 ```mermaid
@@ -46,7 +47,6 @@ else Eligible
   BC-->>GW: Normalized cancel response
   GW->>GW: Update status=CANCELED + audit log (who/why)
   GW-->>Actor: CANCELED (normalized)
-end
 ```
 ## Standalone Risk Validation
 ```mermaid
