@@ -1,0 +1,11 @@
+## Country Specific Page (IPGeo)
+
+```mermaid
+flowchart LR
+  U[End User Browser] -->|1. Open default payment URL| FE[Payment Page Frontend]
+  FE -->|2. Call /geo/resolve| BE[Payment Page Backend]
+  BE -->|3. Country lookup IP| IPG[IPGeo Web Service]
+  IPG -->|4. countryId / countryCode| BE
+  BE -->|5. Return locale + config| FE
+  FE -->|6. Load localized strings| I18N[Localization Store i18n bundles]
+  FE -->|7. Render localized payment form| U
