@@ -32,15 +32,15 @@ It does **not** include proprietary assessment prompts, internal documentation, 
 ```mermaid
 sequenceDiagram
 autonumber
-actor Merchant as Online Merchant Shop
-participant GW as XX Gateway API
-participant Risk as External Risk/Fraud Service
-participant BC as Bank Connector (Adapter)
-participant Bank as Bank API
+actor Merchant as Online Merchant
+participant GW as Payment Gateway API
+participant Risk as Risk/Fraud Service
+participant BC as Bank Connector
+participant Bank as Issuer Bank API
 
 Merchant->>GW: POST /transactions/purchase
 GW->>GW: Validate auth + schema + Idempotency-Key
-GW->>Risk: Risk Validate
+GW->>Risk: Risk validate
 Risk-->>GW: decision + score + reasons
 
 alt Risk REJECT
@@ -73,24 +73,24 @@ end
 ```mermaid
 sequenceDiagram
 autonumber
-actor RM as Merchant / Risk Team
-participant GW as "XX Gateway"
-participant BC as "Bank Connector"
-participant BK as "Bank"
+actor RM as Merchant or Risk Team
+participant GW as Payment Gateway API
+participant BC as Bank Connector
+participant Bank as Issuer Bank API
 
-RM->>GW: Cancel request (txId, reason)
-GW->>GW: Validate permissions + locate original tx
-GW->>GW: Check eligibility (status/settlement rules)
+RM->>GW: Cancel request txId and reason
+GW->>GW: Validate permissions and locate original transaction
+GW->>GW: Check eligibility status and settlement rules
 
 alt Not eligible
-  GW-->>RM: ERROR (CANCEL_NOT_ALLOWED)
+  GW-->>RM: ERROR CANCEL_NOT_ALLOWED
 else Eligible
   GW->>BC: Map cancel to bank format
-  BC->>BK: Void/Reversal/Refund
-  BK-->>BC: Success/Fail + reference
+  BC->>Bank: Void or reversal or refund
+  Bank-->>BC: Success or fail plus reference
   BC-->>GW: Normalized cancel response
-  GW->>GW: Update status=CANCELED + audit log
-  GW-->>RM: CANCELED (normalized)
+  GW->>GW: Update status CANCELED and write audit log
+  GW-->>RM: CANCELED normalized
 end
 ```
 ---
@@ -112,16 +112,16 @@ end
 ```mermaid
 sequenceDiagram
 autonumber
-actor Merchant as Online Merchant Shop
-participant GW as XX Gateway API
-participant Risk as External Risk/Fraud Service
+actor Merchant as Online Merchant
+participant GW as Payment Gateway API
+participant Risk as Risk/Fraud Service
 
-Merchant->>GW: POST /risk/validate (customer + order context)
-GW->>GW: Validate request + auth
-GW->>Risk: Risk Validate(...)
+Merchant->>GW: POST /risk/validate customer and order context
+GW->>GW: Validate request and auth
+GW->>Risk: Risk validate
 Risk-->>GW: decision + score + reasons
-GW->>GW: Store risk_assessment (traceability)
-GW-->>Merchant: RiskResult(decision, score, reasons)
+GW->>GW: Store risk assessment for traceability
+GW-->>Merchant: RiskResult decision score reasons
 ```
 ---
 
