@@ -16,11 +16,13 @@ Serve a payment page in the user’s local language by resolving country from IP
 
 ## Flow notes
 - The backend should resolve country using the client IP (more reliable than browser-only).
+- Language is selected via a simple country→locale mapping, with **English fallback**.
 - If lookup fails, fallback to **English** and allow a manual language selector.
 - Cache country results briefly to reduce dependency on the external geo service.
 - Avoid logging sensitive payment data on the client or in URL parameters.
 
 ---
+
 ## Localization Only (no payment submission)
 
 ```mermaid
@@ -37,7 +39,7 @@ flowchart LR
 ## With Payment Submission (end-to-end)
 ```mermaid
 flowchart LR
- U["End User Browser"] -->|1 Open default payment URL| FE["Payment Page Frontend"]
+  U["End User Browser"] -->|1 Open default payment URL| FE["Payment Page Frontend"]
   FE -->|2 Call /geo/resolve| BE["Payment Page Backend"]
   BE -->|3 Country lookup by IP| GEO["IP-to-Country Service"]
   GEO -->|4 Return countryId or countryCode| BE
