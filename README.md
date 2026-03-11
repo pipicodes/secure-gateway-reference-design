@@ -130,6 +130,7 @@ GW-->>Merchant: RiskResult decision score reasons
 ## Risk Team Console (Wireframe)
 ![Risk Team Console](wireframes/risk-console.png)
 *Figure: Vendor-neutral Risk Team Console for review + cancel with audit trail.*
+
 ---
 
 ## Notes on “Multi-bank” Support (simple concept)
