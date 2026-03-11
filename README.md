@@ -7,6 +7,12 @@ It focuses on **secure-by-design thinking**, auditability, and operational suppo
 - **Transaction flows (Purchase / Cancellation / Risk Check)** with short explanations
 - **General tasks**: localization via IP-based country lookup, spec outline, and multi-language error messages (see `General-Task.md`)
 
+## More artifacts
+- API Interface examples: `API-INTERFACE.md`
+- Risk Team Console spec: `RISK-CONSOLE.md`
+- Management Reports: `REPORTS.md`
+- Multi-language errors: `I18N-ERRORS.md`
+
 ## Disclaimer
 This is an educational, vendor-neutral portfolio artifact.
 It does **not** include proprietary assessment prompts, internal documentation, confidential information, or production system details from any company.
