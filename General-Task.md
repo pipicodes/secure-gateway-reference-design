@@ -21,6 +21,12 @@ Serve a payment page in the user’s local language by resolving country from IP
 - Cache country results briefly to reduce dependency on the external geo service.
 - Avoid logging sensitive payment data on the client or in URL parameters.
 
+### Fallback and safety notes
+- Preferred language: `Accept-Language` (if provided) → else geo-based locale → else English.
+- If geo lookup fails, show English + allow manual language selection.
+- Avoid exposing internal geo errors to end users; use generic messages and fallback behavior.
+- Log only non-sensitive context (country/locale), and never log card details.
+  
 ---
 
 ## Localization Only (no payment submission)
