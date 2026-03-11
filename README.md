@@ -27,7 +27,7 @@ It does **not** include proprietary assessment prompts, internal documentation, 
 - **Correlation ID + audit trail** supports incident investigations and audits
 - No sensitive card data is stored (tokenization assumed)
 
-## Purchase Flow
+## Purchase Flow Diagram
 
 ```mermaid
 sequenceDiagram
@@ -69,7 +69,7 @@ end
 - Cancellation is a sensitive action → requires **RBAC** and **mandatory reason**
 - Full **status history** and **audit log** reduce investigation time
   
-## Cancellation Flow
+## Cancellation Flow Diagram
 ```mermaid
 sequenceDiagram
 autonumber
@@ -108,7 +108,7 @@ end
 **Security/ops notes:**
 - Risk outputs should be traceable for review/audit
 - Responses should use **stable codes** (machine-friendly) + **messages** (human-friendly)
-## Standalone Risk Validation
+## Standalone Risk Validation Diagram
 ```mermaid
 sequenceDiagram
 autonumber
