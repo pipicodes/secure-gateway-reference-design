@@ -19,6 +19,7 @@ It does **not** include proprietary assessment prompts, internal documentation, 
 
 ## Security testing relevance
 These flows highlight common pentest focus areas: authorization boundaries (RBAC/BOLA), business-logic/state validation, error handling, and audit logging.
+
 ---
 ## Purchase Flow
 
